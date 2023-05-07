@@ -7,6 +7,7 @@ import { Blog } from "../../types";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import BlogList from "@/components/BlogList";
+import BlogListSkeleton from "@/components/BlogListSkeleton";
 
 export default function Home() {
   const blogsQuery = getBlogs();
@@ -26,9 +27,6 @@ export default function Home() {
     });
   }, [blogsQuery.data, categoriesQuery.data]);
 
-  if (blogsQuery.status === "loading")
-    return <h1 className="text-4xl">Loading...</h1>;
-
   return (
     <>
       <div className="py-5 px-7 mx-auto max-w-7xl overflow-hidden">
@@ -44,7 +42,11 @@ export default function Home() {
           </div>
         </div>
         <>
-          <BlogList blogs={blogsWithCategories as Blog[]} />
+          {blogsQuery.status === "loading" ? (
+            <BlogListSkeleton />
+          ) : (
+            <BlogList blogs={blogsWithCategories as Blog[]} />
+          )}
         </>
       </div>
     </>

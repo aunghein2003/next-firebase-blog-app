@@ -14,7 +14,7 @@ function BlogList({ blogs }: { blogs: Blog[] }) {
   const [selectedCategory, setSelectedCategory] = useState<Category[]>([]);
 
   const filteredBlogs = useMemo(() => {
-    return blogs.filter((blog) => {
+    return blogs?.filter((blog) => {
       return (
         (searchBlog === "" ||
           blog.title.toLowerCase().includes(searchBlog.toLowerCase())) &&

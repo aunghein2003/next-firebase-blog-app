@@ -6,7 +6,7 @@ const Badge: React.FC<BadgeProps> = ({ children, className, ...props }) => {
   return (
     <span
       className={cn(
-        `text-xs px-2 py-1 m-1 rounded-xl bg-blue-500 text-slate-300`,
+        `text-[10px] md:text-xs px-1.5 md:px-2 py-1 mr-1 rounded-xl shadow-sm bg-blue-500 text-slate-50 tracking-wide`,
         className
       )}
       {...props}

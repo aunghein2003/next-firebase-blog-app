@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { getBlogs } from "@/controller/blogController";
 import { getCategories } from "@/controller/categoryController";
 import { Blog } from "../../types";
@@ -8,10 +8,13 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import BlogList from "@/components/BlogList";
 import BlogListSkeleton from "@/components/BlogListSkeleton";
+import CategoriesModal from "@/components/CategoriesModal";
 
 export default function Home() {
   const blogsQuery = getBlogs();
   const categoriesQuery = getCategories();
+
+  const [modalOpen, setModalOpen] = useState(false); //Category modal open close
 
   const blogsWithCategories = useMemo(() => {
     return blogsQuery.data?.map((blog) => {
@@ -36,7 +39,11 @@ export default function Home() {
             <Link href={`/create`}>
               <Button>Create</Button>
             </Link>
-            <Button variant="secondary" outline>
+            <Button
+              variant="secondary"
+              outline
+              onClick={() => setModalOpen(true)}
+            >
               Edit Tags
             </Button>
           </div>
@@ -49,6 +56,7 @@ export default function Home() {
           )}
         </>
       </div>
+      <CategoriesModal open={modalOpen} close={() => setModalOpen(false)} />
     </>
   );
 }

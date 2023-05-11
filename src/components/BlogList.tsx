@@ -6,6 +6,7 @@ import Select from "react-select";
 import Card from "./Card";
 import Input from "./ui/Input";
 import { Blog, Category } from "../../types";
+import Link from "next/link";
 
 function BlogList({ blogs }: { blogs: Blog[] }) {
   const categoriesQuery = getCategories();
@@ -30,9 +31,11 @@ function BlogList({ blogs }: { blogs: Blog[] }) {
 
   return (
     <div className="py-10 flex flex-col-reverse md:flex-row justify-between gap-x-5">
-      <div className="space-y-3 w-full md:w-2/3">
+      <div className="w-full md:w-2/3 flex flex-col gap-y-3">
         {filteredBlogs?.map((blog) => (
-          <Card key={blog.id} data={blog as Blog} />
+          <Link key={blog.id} href={`/${blog.id}`}>
+            <Card data={blog as Blog} />
+          </Link>
         ))}
       </div>
       <div className="w-full md:w-1/3 mb-[3vh] md:mb-0 md:px-5">

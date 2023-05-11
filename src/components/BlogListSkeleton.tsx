@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 
-function BlogListSkeleton() {
+export default function BlogListSkeleton() {
   return (
     <div className="py-10 flex flex-col-reverse md:flex-row justify-between gap-x-5">
       <div className="space-y-3 w-full md:w-2/3">
@@ -45,5 +45,3 @@ function BlogListSkeleton() {
     </div>
   );
 }
-
-export default BlogListSkeleton;

@@ -11,9 +11,6 @@ function CreateBlog() {
     error: categoriesError,
   } = getCategories();
 
-  if (categoriesStatus === "loading")
-    return <h1 className="text-4xl">Loading</h1>;
-
   if (categoriesStatus === "error")
     return <pre>{JSON.stringify(categoriesError)}</pre>;
 

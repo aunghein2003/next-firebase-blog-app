@@ -32,8 +32,7 @@ const FormInput: React.FC<FormInputProps> = ({
 
   const router = useRouter();
 
-  function submitHandler(e: React.FormEvent) {
-    e.preventDefault();
+  function submitHandler() {
     if (!contentValue || !titleRef.current?.value || !imageRef.current?.value) {
       return alert("Please fill all fields!");
     } else {
@@ -50,7 +49,7 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <div className="py-5 px-7 mx-auto max-w-7xl h-screen">
       <h1 className="text-3xl md:text-4xl font-semibold">{heading}</h1>
-      <form onSubmit={submitHandler} className="py-7 flex flex-col gap-y-5">
+      <div className="py-7 flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-1">
           <label className="text-lg text-slate-400">Title:</label>
           <Input type="text" ref={titleRef} defaultValue={title} />
@@ -105,12 +104,12 @@ const FormInput: React.FC<FormInputProps> = ({
           />
         </div>
         <div className="flex justify-end items-center gap-x-3 md:gap-x-5">
-          <Button type="submit">Save</Button>
-          <Button variant="secondary" outline>
+          <Button onClick={submitHandler}>Save</Button>
+          <Button variant="secondary" outline onClick={() => router.push("/")}>
             Cancel
           </Button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

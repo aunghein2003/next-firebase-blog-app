@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { getBlogs } from "@/controller/blogController";
+import { getAllBlogs } from "@/controller/blogController";
 import { getCategories } from "@/controller/categoryController";
 import { Blog } from "../../types";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import BlogListSkeleton from "@/components/BlogListSkeleton";
 import CategoriesModal from "@/components/CategoriesModal";
 
 export default function Home() {
-  const blogsQuery = getBlogs();
+  const blogsQuery = getAllBlogs();
   const categoriesQuery = getCategories();
 
   const [modalOpen, setModalOpen] = useState(false); //Category modal open close
@@ -34,7 +34,7 @@ export default function Home() {
     <>
       <div className="py-5 px-7 mx-auto max-w-7xl overflow-hidden">
         <div className="w-full flex justify-between items-center">
-          <h1 className="text-3xl md:text-5xl font-semibold">Logo</h1>
+          <h1 className="text-3xl md:text-5xl font-semibold">Blog</h1>
           <div className="flex items-center gap-x-3 md:gap-x-5">
             <Link href={`/create`}>
               <Button>Create</Button>

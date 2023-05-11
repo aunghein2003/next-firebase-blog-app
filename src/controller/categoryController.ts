@@ -1,6 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { db } from "@/config/firebase";
-import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import { useQuery } from "@tanstack/react-query";
 import { Category } from "../../types";
 
@@ -30,4 +38,14 @@ const getCategories = () => {
   });
 };
 
-export { getCategories, addCategory };
+//Update Category
+const updateCategory = async (id: string, label: string) => {
+  await updateDoc(doc(db, "categories", id), { label });
+};
+
+//Delete Category
+const deleteCategory = async (id: string) => {
+  await deleteDoc(doc(db, "categories", id));
+};
+
+export { getCategories, addCategory, updateCategory, deleteCategory };

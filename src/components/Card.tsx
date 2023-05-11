@@ -19,8 +19,15 @@ function Card({ data }: CardProps) {
           ))}
         </div>
       </div>
-      <div className=" w-[50px] h-[50px] md:w-[150px] md:h-[100px] relative">
-        <Image src={data.image} alt="blog card" fill className="object-cover" />
+      <div className="w-[50px] h-[50px] md:w-[150px] md:h-[100px] relative">
+        <Image
+          src={data.image}
+          alt="blog card"
+          fill
+          sizes="100vw"
+          quality={75}
+          className="object-cover"
+        />
       </div>
     </div>
   );

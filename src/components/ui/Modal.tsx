@@ -10,9 +10,6 @@ export interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ open, close, heading, children }) => {
-  console.log("modal open", open);
-  console.log(cn("hidden", open && "block"));
-
   return (
     <div
       className={cn(

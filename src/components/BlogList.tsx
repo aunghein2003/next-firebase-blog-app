@@ -27,8 +27,6 @@ function BlogList({ blogs }: { blogs: Blog[] }) {
     });
   }, [searchBlog, selectedCategory, blogs]);
 
-  console.log(filteredBlogs);
-
   return (
     <div className="py-10 flex flex-col-reverse md:flex-row justify-between gap-x-5">
       <div className="w-full md:w-2/3 flex flex-col gap-y-3">

@@ -1,6 +1,7 @@
 "use client";
 
 import FormInput from "@/components/FormInput";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import { createBlog } from "@/controller/blogController";
 import { getCategories } from "@/controller/categoryController";
 
@@ -13,6 +14,8 @@ function CreateBlog() {
 
   if (categoriesStatus === "error")
     return <pre>{JSON.stringify(categoriesError)}</pre>;
+
+  if (categoriesStatus === "loading") return <LoadingIndicator />;
 
   if (categoriesStatus === "success") {
     return (

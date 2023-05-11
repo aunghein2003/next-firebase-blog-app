@@ -1,6 +1,6 @@
 "use client";
 
-import { getBlog } from "@/controller/blogController";
+import { deleteBlog, getBlog } from "@/controller/blogController";
 import { getCategories } from "@/controller/categoryController";
 import { useParams } from "next/navigation";
 import { useMemo } from "react";
@@ -11,6 +11,8 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { Oxygen } from "next/font/google";
 import BlogDetailSkeleton from "@/components/BlogDetailSkeleton";
+import combinedBlogCategories from "@/helper/combinedBlogCategories";
+import { useRouter } from "next/navigation";
 
 const oxygen = Oxygen({
   weight: "300",
@@ -19,19 +21,12 @@ const oxygen = Oxygen({
 
 export default function BlogDetail() {
   const { blogId } = useParams();
+  const router = useRouter();
   const { data: blog, status: blogStatus } = getBlog(blogId);
   const { data: categories, status: categoriesStatus } = getCategories();
 
   const blogWithCategories = useMemo(() => {
-    return {
-      id: blog?.id,
-      title: blog?.title,
-      image: blog?.image,
-      content: blog?.content,
-      categories: categories?.filter((category) =>
-        blog?.categoryIds?.includes(category.id)
-      ),
-    } as Blog;
+    return combinedBlogCategories(blog, categories) as Blog;
   }, [blog, categories]);
 
   if (blogStatus === "loading" || categoriesStatus === "loading")
@@ -46,10 +41,18 @@ export default function BlogDetail() {
             <Link href={`/create`}>
               <Button>Create</Button>
             </Link>
-            <Link href={`/edit`}>
+            <Link href={`${blogWithCategories.id}/edit`}>
               <Button variant="secondary">Edit</Button>
             </Link>
-            <Button variant="danger">Delete</Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                deleteBlog(blog!.id);
+                router.push("/");
+              }}
+            >
+              Delete
+            </Button>
           </div>
         </div>
         <div className="py-14 flex justify-center items-center">
@@ -61,6 +64,8 @@ export default function BlogDetail() {
                 alt="blog detail"
                 fill
                 priority
+                sizes="100vw"
+                quality={75}
                 className="object-cover"
               />
             </div>

@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import BlogList from "@/components/BlogList";
 import BlogListSkeleton from "@/components/BlogListSkeleton";
 import CategoriesModal from "@/components/CategoriesModal";
+import combinedBlogCategories from "@/helper/combinedBlogCategories";
 
 export default function Home() {
   const blogsQuery = getAllBlogs();
@@ -17,17 +18,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false); //Category modal open close
 
   const blogsWithCategories = useMemo(() => {
-    return blogsQuery.data?.map((blog) => {
-      return {
-        id: blog.id,
-        title: blog.title,
-        image: blog.image,
-        content: blog.content,
-        categories: categoriesQuery.data?.filter((category) =>
-          blog.categoryIds.includes(category.id)
-        ),
-      };
-    });
+    return combinedBlogCategories(blogsQuery.data, categoriesQuery.data);
   }, [blogsQuery.data, categoriesQuery.data]);
 
   return (

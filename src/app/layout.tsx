@@ -7,6 +7,19 @@ import Provider from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "My Bloggy",
+  description: "blog app with category by next js and firebase",
+  keywords: ["nextjs", "firebase", "blog", "my bloggy"],
+
+  openGraph: {
+    type: "website",
+    title: "My Bloggy",
+    description: "blog app with category by next js and firebase",
+    siteName: "My Bloggy",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {

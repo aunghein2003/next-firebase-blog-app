@@ -19,13 +19,13 @@ function CreateBlog() {
 
   if (categoriesStatus === "success") {
     return (
-      <>
+      <div>
         <FormInput
           heading="Create Blog"
           onSubmit={createBlog}
           availableCategories={categoriesData}
         />
-      </>
+      </div>
     );
   }
 }

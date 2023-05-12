@@ -23,7 +23,7 @@ export default function EditBlog() {
 
   if (blogStatus === "success" || categoriesStatus === "success")
     return (
-      <>
+      <div>
         <FormInput
           heading="Edit Blog"
           onSubmit={(blogData: BlogData) =>
@@ -32,6 +32,6 @@ export default function EditBlog() {
           availableCategories={categories!}
           {...blogWithCategories}
         />
-      </>
+      </div>
     );
 }

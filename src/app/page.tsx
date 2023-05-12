@@ -10,6 +10,7 @@ import BlogList from "@/components/BlogList";
 import BlogListSkeleton from "@/components/BlogListSkeleton";
 import CategoriesModal from "@/components/CategoriesModal";
 import combinedBlogCategories from "@/helper/combinedBlogCategories";
+import Image from "next/image";
 
 export default function Home() {
   const blogsQuery = getAllBlogs();
@@ -22,10 +23,11 @@ export default function Home() {
   }, [blogsQuery.data, categoriesQuery.data]);
 
   return (
-    <>
+    <div>
       <div className="py-5 px-7 mx-auto max-w-7xl overflow-hidden">
         <div className="w-full flex justify-between items-center">
-          <h1 className="text-3xl md:text-5xl font-semibold">Blog</h1>
+          <Image src={`/blogging.png`} alt="Logo" width={40} height={40} />
+
           <div className="flex items-center gap-x-3 md:gap-x-5">
             <Link href={`/create`}>
               <Button>Create</Button>
@@ -39,15 +41,15 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <>
+        <div>
           {blogsQuery.status === "loading" ? (
             <BlogListSkeleton />
           ) : (
             <BlogList blogs={blogsWithCategories as Blog[]} />
           )}
-        </>
+        </div>
       </div>
       <CategoriesModal open={modalOpen} close={() => setModalOpen(false)} />
-    </>
+    </div>
   );
 }

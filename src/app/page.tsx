@@ -26,8 +26,9 @@ export default function Home() {
     <div>
       <div className="py-5 px-7 mx-auto max-w-7xl overflow-hidden">
         <div className="w-full flex justify-between items-center">
-          <Image src={`/blogging.png`} alt="Logo" width={40} height={40} />
-
+          <Link href={`/`}>
+            <Image src={`/blogging.png`} alt="Logo" width={40} height={40} />
+          </Link>
           <div className="flex items-center gap-x-3 md:gap-x-5">
             <Link href={`/create`}>
               <Button>Create</Button>

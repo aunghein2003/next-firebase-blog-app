@@ -10,7 +10,7 @@ export const metadata = {
   title: "My Bloggy",
   description: "blog app with category by next js and firebase",
   keywords: ["nextjs", "firebase", "blog", "my bloggy"],
-
+  icons: "/blogging.png",
   openGraph: {
     type: "website",
     title: "My Bloggy",

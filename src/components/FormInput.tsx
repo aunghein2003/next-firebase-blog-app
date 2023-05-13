@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import ReactQuill from "react-quill";
 import Select from "react-select/creatable";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
@@ -51,11 +50,12 @@ const FormInput: React.FC<FormInputProps> = ({
       <h1 className="text-3xl md:text-4xl font-semibold">{heading}</h1>
       <div className="py-7 flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-1">
-          <label className="text-lg text-slate-400">Title:</label>
+          <label className="text-lg text-slate-400">Title :</label>
           <Input type="text" ref={titleRef} defaultValue={title} />
         </div>
+
         <div className="flex flex-col gap-y-1">
-          <label className="text-lg text-slate-400">Category:</label>
+          <label className="text-lg text-slate-400">Category :</label>
           <Select
             isMulti
             options={availableCategories.map((category) => ({
@@ -90,19 +90,24 @@ const FormInput: React.FC<FormInputProps> = ({
             })}
           />
         </div>
+
         <div className="flex flex-col gap-y-1">
-          <label className="text-lg text-slate-400">Image:</label>
+          <label className="text-lg text-slate-400">Image :</label>
           <Input type="text" ref={imageRef} defaultValue={image} />
         </div>
-        <div className="flex flex-col pt-5 pb-16 md:pb-10">
-          <ReactQuill
-            theme="snow"
-            placeholder="Write contents here..."
+
+        <div className="flex flex-col gap-y-1">
+          <label className="text-lg text-slate-400">Contents :</label>
+          <textarea
+            rows={5}
             defaultValue={content}
-            onChange={setContentValue}
-            className="h-[20vh]"
-          />
+            value={contentValue}
+            onChange={(e) => setContentValue(e.target.value)}
+            placeholder="Write contents here..."
+            className="w-full py-2 px-3 placeholder:text-slate-400 rounded-xl shadow-sm border border-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400"
+          ></textarea>
         </div>
+
         <div className="flex justify-end items-center gap-x-3 md:gap-x-5">
           <Button onClick={submitHandler}>Save</Button>
           <Button variant="secondary" outline onClick={() => router.push("/")}>

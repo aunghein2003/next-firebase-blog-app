@@ -38,7 +38,7 @@ export default function Home() {
               outline
               onClick={() => setModalOpen(true)}
             >
-              Edit Tags
+              Edit Categories
             </Button>
           </div>
         </div>

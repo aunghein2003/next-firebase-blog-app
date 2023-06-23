@@ -8,17 +8,21 @@ interface CardProps {
 
 function Card({ data }: CardProps) {
   return (
-    <div className="p-5 border rounded-md shadow-md flex justify-between items-center gap-x-5 transition-all duration-100 cursor-pointer hover:scale-[1.006]">
-      <div>
-        <h1 className="text-2xl font-semibold md:font-[650] ">{data.title}</h1>
-        <div className="hidden md:block">{data.content}</div>
-        <div className="mt-2">
+    <div className="grid grid-cols-3 gap-4  overflow-hidden border rounded-md shadow-md transition-all duration-100 cursor-pointer hover:scale-[1.006]">
+      <div className="p-3 col-span-2">
+        <h3 className="text-xl md:text-2xl font-medium md:font-[650] ">
+          {data.title}
+        </h3>
+        <div className="hidden md:block max-h-[4.85em] line-clamp-3 text-ellipsis overflow-hidden">
+          {data.content}
+        </div>
+        <div className="mt-3">
           {data?.categories.map((category) => (
             <Badge key={category.id}>{category.label}</Badge>
           ))}
         </div>
       </div>
-      <div className="w-[50px] h-[50px] md:w-[150px] md:h-[100px] relative">
+      <div className="relative">
         <Image
           src={data.image}
           alt="blog card"

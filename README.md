@@ -1,10 +1,22 @@
 
 ## My Bloggy - Blog App
 
-This is the Blog App with Category. I use Next Js 13 appDir, tailwindcss for styling, typescript, firebase for backend and database. I apply cva and clsx for reusable components for ui.
-I deploy the project on Vercel. 
+This is the Blog App with Category. Users can CRUD blogs and categories. They can insert the photo via the link from [Unsplash.com](https://unsplash.com/)
 
 This is [Live Demo](https://next-firebase-blog-app.vercel.app/)
+
+### Tech Stacks Using
+- Next.js
+- Typescript
+- Firebase
+- React Query
+- TailwindCss
+- React Loading Skeleton
+- clsx
+- cva
+
+## Screenshots
+![App Screenshots](https://raw.githubusercontent.com/aunghein2003/next-firebase-blog-app/main/public/screenshot.png)
 
 ## Install Dependencies
 
